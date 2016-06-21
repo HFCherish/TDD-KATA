@@ -1,0 +1,5 @@
+Tasks:
+1. print number from 1 to 100
+2. for multiple of three print "fizz"
+3. for multiple of five print "buzz"
+4. for multiple of both three & five print "fizzbuzz"
