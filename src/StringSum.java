@@ -1,5 +1,3 @@
-package stringSum;
-
 public class StringSum {
     public static boolean isNaturalNumber(String input) {
         if( input == null || input.length()==0 )  return false;
