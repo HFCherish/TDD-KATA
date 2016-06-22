@@ -40,8 +40,19 @@ public class PrimeTest {
         primeFactors = Prime.primeFactors(2);
         assertThat(primeFactors, contains(2));
 
-        primeFactors = Prime.primeFactors(8);
-        assertThat(primeFactors, contains(2));
+        primeFactors = Prime.primeFactors(3);
+        assertThat(primeFactors, contains(3));
 
+        primeFactors = Prime.primeFactors(4);
+        assertThat(primeFactors, contains(2,2));
+
+        primeFactors = Prime.primeFactors(6);
+        assertThat(primeFactors, contains(2,3));
+
+        primeFactors = Prime.primeFactors(9);
+        assertThat(primeFactors, contains(3,3));
+
+        primeFactors = Prime.primeFactors(45);
+        assertThat(primeFactors, contains(3,3,5));
     }
 }
