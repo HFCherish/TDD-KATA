@@ -34,4 +34,20 @@ public class Prime {
         }
         return res;
     }
+
+    public static String printPrimeComposite(int start, int end) {
+        StringBuilder res = new StringBuilder();
+        for(int i=start; i<=end; i++) {
+            if( i == 1 )    res.append(1);
+            else {
+                int factor;
+                for (factor = 2; factor < i && i % factor != 0; factor++) ;
+                if (factor >= i) res.append("prime");
+                else if( i % 2 == 0 )   res.append(i);
+                else res.append("composite");
+            }
+            res.append(", ");
+        }
+        return res.substring(0, res.length()-2);
+    }
 }

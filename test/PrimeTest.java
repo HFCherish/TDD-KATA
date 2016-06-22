@@ -4,6 +4,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.core.Is.is;
 
 public class PrimeTest {
@@ -55,5 +56,27 @@ public class PrimeTest {
 
         primeFactors = Prime.primeFactors(45);
         assertThat(primeFactors, contains(3,3,5));
+    }
+
+    @Test
+    public void shouldPrint1ForNumber1() {
+        assertThat(Prime.printPrimeComposite(1,1), containsString("1"));
+    }
+
+    @Test
+    public void shouldPrintPrimeForNumberPrime() {
+        assertThat(Prime.printPrimeComposite(1,2), containsString("1, prime"));
+        assertThat(Prime.printPrimeComposite(1,3), containsString("1, prime, prime"));
+    }
+
+    @Test
+    public void shouldPrintNumberForCompositeButEvenNumber() {
+        assertThat(Prime.printPrimeComposite(1,4), containsString("1, prime, prime, 4"));
+    }
+
+    @Test
+    public void shouldPrintCompositeForCompositeAndNotEvenNumber() {
+        assertThat(Prime.printPrimeComposite(1,9), containsString("1, prime, prime, 4, prime, 6, prime, 8, composite"));
+
     }
 }
