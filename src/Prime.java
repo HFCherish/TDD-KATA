@@ -1,9 +1,8 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Prime {
+    @Deprecated
     public static List<Integer> factors(int input) {
         List<Integer> res = new ArrayList<>();
 
@@ -14,7 +13,7 @@ public class Prime {
         return res;
     }
 
-
+    @Deprecated
     public static boolean isPrime(int input) {
         if (input == 2) return true;
         if (input == 1 || input % 2 == 0) return false;
