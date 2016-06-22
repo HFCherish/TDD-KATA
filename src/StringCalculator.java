@@ -12,6 +12,10 @@ public class StringCalculator {
             }
         }
         String[] numbs = numbers.split(delimiter);
+        return getSum(numbs);
+    }
+
+    private static int getSum(String[] numbs) throws Exception {
         int sum = 0;
         StringBuilder negativeNumbers = new StringBuilder();
         for (String numb : numbs) {
