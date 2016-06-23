@@ -1,68 +1,53 @@
 public class BowlingGame {
-    private int score = 0;
-    private int rollInFrameCount = 0;
-    private int lastRoll = 0;
-    private boolean hasSpare = false;
-    private boolean hasSpike = false;
-    private int spikeCount = 0;
-    private int frameCount = 0;
+    private int[] rollPins;
+    private int currentRollIndex;
+    private final int TOTAL_FRAMES = 10;
+
+    public BowlingGame() {
+        rollPins = new int[TOTAL_FRAMES * 2 + 1];
+        currentRollIndex = 0;
+    }
 
     public void roll(int pins) {
-        score += pins;
-        if (isGameOver())
-            return;
-        addBonusForSpare(pins);
-        addBonusForSpike(pins);
-        rollInFrameCount++;
-        checkSpare(pins);
-        checkSpike(pins);
-        lastRoll = pins;
-    }
-
-    private boolean isGameOver() {
-        return frameCount == 10;
-    }
-
-    private void addBonusForSpare(int pins) {
-        if (hasSpare) {
-            score += pins;
-            hasSpare = false;
-        }
-    }
-
-    private void addBonusForSpike(int pins) {
-        if (hasSpike) {
-            score += pins;
-            spikeCount++;
-            if (spikeCount == 2) {
-                hasSpike = false;
-                spikeCount = 0;
-            }
-        }
-    }
-
-    private void checkSpike(int pins) {
-        if (rollInFrameCount == 1 && pins == 10) {
-            hasSpike = true;
-            startNewFrame();
-        }
-    }
-
-    private void checkSpare(int pins) {
-        if (rollInFrameCount == 2) {
-            if (lastRoll + pins == 10) {
-                hasSpare = true;
-            }
-            startNewFrame();
-        }
-    }
-
-    private void startNewFrame() {
-        rollInFrameCount = 0;
-        frameCount++;
+        rollPins[currentRollIndex++] = pins;
     }
 
     public int score() {
+        int score = 0;
+        int frameIndex = 0;
+        for (int frame = 0; frame < TOTAL_FRAMES; frame++) {
+            if(isStrike(rollPins[frameIndex])) {
+                score += 10 + strikeBonus(frameIndex);
+                frameIndex ++;
+            }
+            else if(isSpair(frameIndex)) {
+                score += 10 + spareBonus(frameIndex);
+                frameIndex += 2;
+            } else {
+                score += getFrameScore(frameIndex);
+                frameIndex += 2;
+            }
+        }
         return score;
+    }
+
+    private int strikeBonus(int frameIndex) {
+        return rollPins[frameIndex + 1] + rollPins[frameIndex + 2];
+    }
+
+    private boolean isStrike(int rollPin) {
+        return rollPin == 10;
+    }
+
+    private int spareBonus(int frameIndex) {
+        return rollPins[frameIndex+2];
+    }
+
+    private boolean isSpair(int frameIndex) {
+        return getFrameScore(frameIndex) == 10;
+    }
+
+    private int getFrameScore(int frameIndex) {
+        return rollPins[frameIndex] + rollPins[frameIndex+1];
     }
 }
