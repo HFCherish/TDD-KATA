@@ -56,4 +56,13 @@ public class BowlingGameTest {
         rollForMany(16, 0);
         assertThat(game.score(), is(28));
     }
+
+    @Test
+    public void should_add_bonus_given_last_frame_spare() {
+        rollForMany(18,0);
+        game.roll(5);
+        game.roll(5);
+        game.roll(4);
+        assertThat(game.score(), is(14));
+    }
 }
