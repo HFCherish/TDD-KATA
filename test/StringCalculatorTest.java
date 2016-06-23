@@ -64,4 +64,25 @@ public class StringCalculatorTest {
         exception.expectMessage(containsString("-1, -1"));
         StringCalculator.calculate("-1,2,-1");
     }
+
+    @Test
+    public void shouldIgnoreNumberBiggerThan1000WhenSum() throws Exception {
+        assertThat(StringCalculator.calculate("1,1000"), is(1001));
+        assertThat(StringCalculator.calculate("1,1001"), is(1));
+    }
+
+    @Test
+    public void shouldReturnSumWhenDelimiterWithAnyLengthSurroundedByBrackets() throws Exception {
+        assertThat(StringCalculator.calculate("[***]\n1***2***3***"), is(6));
+    }
+
+    @Test
+    public void shouldReturnSumWhenMultiDelimitersWithOneCharacterSurroundedByBrackets() throws Exception {
+        assertThat(StringCalculator.calculate("[*][%]\n2*5%1"), is(8));
+    }
+
+    @Test
+    public void shouldReturnSumWhenMultiDelimitersWithAnyLengthSurroundedByBrackets() throws Exception {
+        assertThat(StringCalculator.calculate("[***][;][,]\n2;2***5,1"), is(10));
+    }
 }
