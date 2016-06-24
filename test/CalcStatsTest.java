@@ -9,26 +9,21 @@ public class CalcStatsTest {
 
     private CalcStats calcStats;
 
-    @Before
-    public void setUp() {
-        calcStats = new CalcStats();
-    }
-
     @Test
     public void should_get_stats_for_one_number() {
-        calcStats.calculate(new int[] {1});
+        calcStats = new CalcStats(new int[] {1});
         checkStatistics(1, 1, 1, 1);
     }
 
     @Test
     public void should_get_stats_for_two_numbers() {
-        calcStats.calculate(new int[] {2,-1});
+        calcStats = new CalcStats(new int[] {2,-1});
         checkStatistics(-1,2,2,0.5);
     }
 
     @Test
     public void should_get_stats_for_any_length_of_numbers() {
-        calcStats.calculate(new int[] {6,9,15,-2,92,11});
+        calcStats = new CalcStats(new int[] {6,9,15,-2,92,11});
         checkStatistics(-2,92,6,21.833333);
     }
 
