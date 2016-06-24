@@ -45,7 +45,7 @@ tenth frame.
 4. there's one spike in some frame but not the tenth frame
 	* roll(10), roll(5), roll(4), roll(0) for 16 times, score 28
 5. there's one spare/spike in the last frame
-	* roll(0) for 18 times, roll(5), roll(5), roll(4), score 18
+	* roll(0) for 18 times, roll(5), roll(5), roll(4), score 14
 	* roll(0) for 18 times, roll(10), roll(8), roll(2), score 20
 	
 ```
